@@ -1,0 +1,29 @@
+zerops:
+  - setup: app
+    build:
+      base: nodejs@20
+      buildCommands:
+        - pnpm i
+        - pnpm run build
+        - cd build & pnpm i --prod
+      deployFiles:
+        - build/~
+    run:
+      base: nodejs@20
+      ports:
+        - port: 3000
+          httpSupport: true
+      envVariables:
+        TZ: UTC
+        PORT: 3333
+        HOST: localhost
+        LOG_LEVEL: info
+        APP_KEY: NTq5-pBUstxNeMhzLRKQazAbawS3suyh
+        NODE_ENV: development
+        DB_HOST: db
+        DB_PORT: 5432
+        DB_USER: db
+        DB_PASSWORD: ${db_password}
+        DB_DATABASE: db
+        SESSION_DRIVER: cookie
+      start: node bin/server.js
