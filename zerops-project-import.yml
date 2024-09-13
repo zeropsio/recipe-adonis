@@ -8,3 +8,6 @@ services:
     type: nodejs@20
     enableSubdomainAccess: true
     buildFromGit: https://github.com/zeropsio/recipe-adonis
+  - hostname: db
+    type: postgresql@16
+    mode: NON_HA
